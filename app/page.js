@@ -14,7 +14,18 @@ export default function Home() {
   );
 
   return (
-    <main>
+    <main
+      className="portfolio-canvas"
+      onPointerMove={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        event.currentTarget.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
+        event.currentTarget.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
+      }}
+    >
+      <div className="ambient-grid" aria-hidden="true"></div>
+      <div className="cursor-glow" aria-hidden="true"></div>
+      <div className="ambient-orb ambient-orb-one" aria-hidden="true"></div>
+      <div className="ambient-orb ambient-orb-two" aria-hidden="true"></div>
       <nav className="nav shell">
         <a className="brand" href="#top">Shreyash Musmade<span>.</span></a>
         <div className="navlinks">
@@ -29,7 +40,7 @@ export default function Home() {
 
       <section id="top" className="hero shell">
         <div className="hero-copy">
-          <p className="eyebrow">AI / ML ENGINEER • DATA ANALYTICS</p>
+          <p className="eyebrow">AI / ML ENGINEER • DATA ANALYTICS • DATA ENGINEER</p>
           <h1>Building intelligent products from <span>data to deployment.</span></h1>
           <p className="hero-text">
             I&apos;m Shreyash Musmade, an AIML engineer focused on machine learning,
@@ -56,7 +67,11 @@ export default function Home() {
             </div>
           </div>
           {profile.resume && (
-            <a className="button primary resume-hero-button" href={profile.resume} download>
+            <a
+              className="button primary resume-hero-button"
+              href={profile.resume}
+              download="Shreyash Musmade Resume.pdf"
+            >
               Download Resume ↓
             </a>
           )}
@@ -64,7 +79,7 @@ export default function Home() {
       </section>
 
       <section id="about" className="section shell">
-        <div className="section-label">01 / ABOUT</div>
+        <div className="section-label">ABOUT</div>
         <div className="about-grid">
           <h2>Engineer with a product mindset.</h2>
           <div>
@@ -82,7 +97,7 @@ export default function Home() {
       </section>
 
       <section id="skills" className="section shell">
-        <div className="section-label">02 / TOOLKIT</div>
+        <div className="section-label">SKILLS</div>
         <h2>Technologies I work with.</h2>
         <div className="skill-grid">
           {skills.map((group) => (
@@ -98,10 +113,9 @@ export default function Home() {
       <section id="projects" className="section shell">
         <div className="section-head">
           <div>
-            <div className="section-label">03 / WORK</div>
+            <div className="section-label">PROJECTS</div>
             <h2>Selected projects.</h2>
           </div>
-          <p className="section-note">Hover, focus or press Enter on a card.</p>
         </div>
 
         <div className="filters" role="tablist" aria-label="Project filters">
@@ -122,19 +136,19 @@ export default function Home() {
       </section>
 
       <section className="section shell process">
-        <div className="section-label">04 / APPROACH</div>
+        <div className="section-label">APPROACH</div>
         <div className="process-grid">
-          <div><span>01</span><h3>Understand</h3><p>Define the problem, data and user workflow.</p></div>
-          <div><span>02</span><h3>Build</h3><p>Develop models, retrieval systems or dashboards.</p></div>
-          <div><span>03</span><h3>Deploy</h3><p>Turn the work into an accessible, usable product.</p></div>
+          <div><span></span><h3>Understand</h3><p>Define the problem, data and user workflow.</p></div>
+          <div><span></span><h3>Build</h3><p>Develop models, retrieval systems or dashboards.</p></div>
+          <div><span></span><h3>Deploy</h3><p>Turn the work into an accessible, usable product.</p></div>
         </div>
       </section>
 
       <section id="credentials" className="section shell">
         <div className="section-head">
           <div>
-            <div className="section-label">05 / CREDENTIALS</div>
-            <h2>Certifications & resume.</h2>
+            <div className="section-label">CREDENTIALS</div>
+            <h2>Certifications.</h2>
           </div>
         </div>
         <div className="credentials-grid">
@@ -150,11 +164,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <aside className="resume-card">
-            <span className="resume-icon">PDF</span>
-            <h3>Resume</h3>
-            <p>{profile.resume ? "Download my latest resume and professional experience." : "Resume is ready to add to the data folder."}</p>
-          </aside>
         </div>
       </section>
 
@@ -173,8 +182,9 @@ export default function Home() {
       </section>
 
       <footer className="footer shell">
-        <span>© {new Date().getFullYear()} Shreyash Musmade</span>
-        <span>Built with Next.js • Ready for Vercel</span>
+     <span> </span>
+     <span>Thank you for Visiting...</span>
+     <span> </span>
       </footer>
     </main>
   );
