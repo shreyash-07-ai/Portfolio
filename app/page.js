@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projects, skills, profile } from "../lib/data";
+import { projects, skills, profile, certifications } from "../lib/data";
 
 const filters = ["All", "AI/ML", "GenAI", "Analytics", "Power BI"];
 
@@ -16,11 +16,12 @@ export default function Home() {
   return (
     <main>
       <nav className="nav shell">
-        <a className="brand" href="#top">SM<span>.</span></a>
+        <a className="brand" href="#top">Shreyash Musmade<span>.</span></a>
         <div className="navlinks">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
+          <a href="#credentials">Credentials</a>
           <a href="#contact">Contact</a>
         </div>
         <a className="nav-cta" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -45,13 +46,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-orbit" aria-hidden="true">
-          <div className="orb orb1"></div>
-          <div className="orb orb2"></div>
-          <div className="orbit-card card-a">RAG</div>
-          <div className="orbit-card card-b">ML</div>
-          <div className="orbit-card card-c">BI</div>
-          <div className="core">AI</div>
+        <div className="profile-area">
+          <div className="profile-frame">
+            <div className="profile-accent"></div>
+            <img src={profile.image} alt="Portrait of Shreyash Musmade" className="profile-image" />
+            <div className="profile-label">
+              <span>Currently</span>
+              <strong>Building AI systems</strong>
+            </div>
+          </div>
+          {profile.resume && (
+            <a className="button primary resume-hero-button" href={profile.resume} download>
+              Download Resume ↓
+            </a>
+          )}
         </div>
       </section>
 
@@ -122,6 +130,34 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="credentials" className="section shell">
+        <div className="section-head">
+          <div>
+            <div className="section-label">05 / CREDENTIALS</div>
+            <h2>Certifications & resume.</h2>
+          </div>
+        </div>
+        <div className="credentials-grid">
+          <div className="certifications-column">
+            {certifications.map((certificate) => (
+              <a className="certificate-card" href={certificate.file} target="_blank" rel="noreferrer" key={certificate.title}>
+                <span className="certificate-type">{certificate.type}</span>
+                <div>
+                  <h3>{certificate.title}</h3>
+                  <p>{certificate.issuer}</p>
+                </div>
+                <span className="arrow">↗</span>
+              </a>
+            ))}
+          </div>
+          <aside className="resume-card">
+            <span className="resume-icon">PDF</span>
+            <h3>Resume</h3>
+            <p>{profile.resume ? "Download my latest resume and professional experience." : "Resume is ready to add to the data folder."}</p>
+          </aside>
+        </div>
+      </section>
+
       <section id="contact" className="contact shell">
         <p className="eyebrow">LET&apos;S CONNECT</p>
         <h2>Have a problem worth solving?</h2>
@@ -129,6 +165,10 @@ export default function Home() {
         <div className="hero-actions">
           <a className="button primary" href={`mailto:${profile.email}`}>Email me ↗</a>
           <a className="button ghost" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+        <div className="contact-details">
+          <a href={`mailto:${profile.email}`}>✉ {profile.email}</a>
+          <a href={`https://wa.me/91${profile.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp: +91 {profile.whatsapp}</a>
         </div>
       </section>
 
