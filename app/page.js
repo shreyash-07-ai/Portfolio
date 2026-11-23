@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projects, skills, profile, certifications } from "../lib/data";
+import { projects, skills, profile, certifications, researchPapers } from "../lib/data";
 
 const filters = ["All", "AI/ML", "GenAI", "Analytics", "Power BI"];
 
@@ -33,6 +33,7 @@ export default function Home() {
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#credentials">Credentials</a>
+          <a href="#research">Research</a>
           <a href="#contact">Contact</a>
         </div>
         <a className="nav-cta" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -58,6 +59,10 @@ export default function Home() {
         </div>
 
         <div className="profile-area">
+          <div className="profile-contact-actions">
+            <a className="button primary" href={`mailto:${profile.email}?subject=Portfolio%20Inquiry`}>✉ Email Me</a>
+            <a className="button ghost" href="#contact">Contact Me ↗</a>
+          </div>
           <div className="profile-frame">
             <div className="profile-accent"></div>
             <img src={profile.image} alt="Portrait of Shreyash Musmade" className="profile-image" />
@@ -164,6 +169,26 @@ export default function Home() {
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="research" className="section shell">
+        <div className="section-head">
+          <div>
+            <div className="section-label">RESEARCH</div>
+            <h2>Research publications.</h2>
+          </div>
+          <p className="section-note">Published research and academic contributions</p>
+        </div>
+        <div className="research-grid">
+          {researchPapers.map((paper) => (
+            <a className="research-card" key={paper.url} href={paper.url} target="_blank" rel="noopener noreferrer">
+              <span className="section-label">{paper.year} • {paper.publisher}</span>
+              <h3>{paper.title}</h3>
+              <p>{paper.description}</p>
+              <span className="research-link">Read research paper (PDF) ↗</span>
+            </a>
+          ))}
         </div>
       </section>
 
